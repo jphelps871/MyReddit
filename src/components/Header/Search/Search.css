@@ -1,0 +1,46 @@
+.search-bar {
+  width: 5%;
+  display: flex;
+  padding: 0.3em;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+
+  transition: all 300ms ease-in-out;
+}
+
+.search-bar:focus-within {
+  border: 2px solid #f74302;
+  width: 50%;
+}
+
+.search-bar button {
+  position: absolute;
+  pointer-events: none;
+  background-color: transparent;
+  border: none;
+}
+
+.search-bar input {
+  cursor: pointer;
+  opacity: 0;
+  background-color: transparent;
+  padding-left: 32px;
+  line-height: 20px;
+  min-width: 50px;
+  flex-grow: 1;
+  color: black;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: ease-out;
+}
+
+.search-bar input:focus-within {
+  cursor: initial;
+  opacity: 1;
+}
+
+input:focus {
+  outline: none !important;
+}
