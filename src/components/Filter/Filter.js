@@ -1,88 +1,56 @@
 import React, { useState } from "react";
+import Media from "react-media";
 import "./Filter.css";
-import rocketIcon from "../../assets/icons/shuttleIcon.svg";
-import flameIcon from "../../assets/icons/flameIcon.svg";
-import newIcon from "../../assets/icons/newIcon.svg";
-import topIcon from "../../assets/icons/topIcon.svg";
+import List from "./FilterButtons/List";
+import rocketIcon from "./icons/shuttleIcon.svg";
+import flameIcon from "./icons/flameIcon.svg";
+import newIcon from "./icons/newIcon.svg";
+import topIcon from "./icons/topIcon.svg";
+import risingIcon from "./icons/risingIcon.svg";
 
-const Filter = () => {
+const Filter = (props) => {
   const [findName, setFindName] = useState({
-    best: true,
-    hot: false,
-    new: false,
-    top: false,
+    Best: true,
+    Hot: false,
+    New: false,
+    Top: false,
+    Rising: false,
   });
 
-  const testFuntion = (event) => {
-    // loop through and turn all to false, then switch one to true
+  const handleClick = (event) => {
+    // loop through and turn all to false
     for (var i in findName) findName[i] = false;
+    // Switch one to true
     setFindName({ ...findName, [event.target.name]: true });
   };
 
-  let best;
-  let hot;
-  let newInfo;
-  let top;
-
-  if (findName.best)
-    best = {
-      color: "white",
-      backgroundColor: "#f74302",
-      boxShadow: "2px 2px 20px rgba(0, 0, 0, 0.3)",
-      backgroundImage: `url(${rocketIcon})`,
-      backgroundPosition: "2px center",
-      padding: "10px 10px 10px 24px",
-    };
-  if (findName.hot)
-    hot = {
-      color: "white",
-      backgroundColor: "#f74302",
-      boxShadow: "2px 2px 20px rgba(0, 0, 0, 0.3)",
-      backgroundImage: `url(${flameIcon})`,
-      backgroundPosition: "5px center",
-      padding: "10px 10px 10px 24px",
-    };
-  if (findName.new)
-    newInfo = {
-      color: "white",
-      backgroundColor: "#f74302",
-      boxShadow: "2px 2px 20px rgba(0, 0, 0, 0.3)",
-      backgroundImage: `url(${newIcon})`,
-      backgroundPosition: "3px center",
-      padding: "10px 10px 10px 24px",
-    };
-  if (findName.top)
-    top = {
-      color: "white",
-      backgroundColor: "#f74302",
-      boxShadow: "2px 2px 20px rgba(0, 0, 0, 0.3)",
-      backgroundImage: `url(${topIcon})`,
-      backgroundPosition: "3px center",
-      padding: "10px 10px 10px 24px",
-    };
-
   return (
     <ul className="filter">
-      <li>
-        <button onClick={testFuntion} style={best} name="best">
-          Best
-        </button>
-      </li>
-      <li>
-        <button onClick={testFuntion} style={hot} name="hot">
-          Hot
-        </button>
-      </li>
-      <li>
-        <button onClick={testFuntion} style={newInfo} name="new">
-          New
-        </button>
-      </li>
-      <li>
-        <button onClick={testFuntion} style={top} name="top">
-          Top
-        </button>
-      </li>
+      <List onClick={handleClick} icon={rocketIcon} toggleStyle={findName.Best}>
+        Best
+      </List>
+      <List onClick={handleClick} icon={flameIcon} toggleStyle={findName.Hot}>
+        Hot
+      </List>
+      <List onClick={handleClick} icon={newIcon} toggleStyle={findName.New}>
+        New
+      </List>
+      <List onClick={handleClick} icon={topIcon} toggleStyle={findName.Top}>
+        Top
+      </List>
+
+      <Media
+        query="(min-width: 760px)"
+        render={() => (
+          <List
+            onClick={handleClick}
+            icon={risingIcon}
+            toggleStyle={findName.Rising}
+          >
+            Rising
+          </List>
+        )}
+      />
     </ul>
   );
 };
