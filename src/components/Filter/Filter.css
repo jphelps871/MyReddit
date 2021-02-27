@@ -1,0 +1,33 @@
+.filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  margin-top: 16px;
+  font-weight: 500;
+  padding: 20px 24px;
+  border-radius: 10px;
+  background-color: #f3f3f3;
+}
+
+.filter li {
+  list-style: none;
+}
+
+.filter li button {
+  font-weight: bold;
+  align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  padding: 12px;
+  color: #636363;
+  font-size: inherit;
+  background: transparent;
+  border-color: transparent;
+  background-repeat: no-repeat;
+}
+
+.filter li button:focus-within {
+  color: white;
+}

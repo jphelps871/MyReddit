@@ -1,17 +1,16 @@
 .search-bar {
-  width: 5%;
   display: flex;
   padding: 0.3em;
   border-radius: 10px;
   position: relative;
   overflow: hidden;
 
-  transition: all 300ms ease-in-out;
+  transition: all 100ms ease-in;
 }
 
 .search-bar:focus-within {
   border: 2px solid #f74302;
-  width: 50%;
+  width: 200px;
 }
 
 .search-bar button {
@@ -22,12 +21,12 @@
 }
 
 .search-bar input {
+  width: 0px;
   cursor: pointer;
   opacity: 0;
   background-color: transparent;
   padding-left: 32px;
   line-height: 20px;
-  min-width: 50px;
   flex-grow: 1;
   color: black;
   border: 1px solid transparent;
@@ -42,5 +41,11 @@
 }
 
 input:focus {
-  outline: none !important;
+  outline: none;
+}
+
+@media screen and (min-width: 600px) {
+  .search-bar:focus-within {
+    width: 300px;
+  }
 }
