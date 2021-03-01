@@ -8,7 +8,7 @@ import newIcon from "./icons/newIcon.svg";
 import topIcon from "./icons/topIcon.svg";
 import risingIcon from "./icons/risingIcon.svg";
 
-const Filter = (props) => {
+const Filter = () => {
   const [findName, setFindName] = useState({
     Best: true,
     Hot: false,
