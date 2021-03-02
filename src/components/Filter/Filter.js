@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Media from "react-media";
 import "./Filter.css";
 import List from "./FilterButtons/List";
@@ -8,34 +8,35 @@ import newIcon from "./icons/newIcon.svg";
 import topIcon from "./icons/topIcon.svg";
 import risingIcon from "./icons/risingIcon.svg";
 
-const Filter = () => {
-  const [findName, setFindName] = useState({
-    Best: true,
-    Hot: false,
-    New: false,
-    Top: false,
-    Rising: false,
-  });
-
-  const handleClick = (event) => {
-    // loop through and turn all to false
-    for (var i in findName) findName[i] = false;
-    // Switch one to true
-    setFindName({ ...findName, [event.target.name]: true });
-  };
-
+const Filter = (props) => {
   return (
     <ul className="filter">
-      <List onClick={handleClick} icon={rocketIcon} toggleStyle={findName.Best}>
+      <List
+        onChange={props.handleClick}
+        icon={rocketIcon}
+        toggleStyle={props.findName.Best}
+      >
         Best
       </List>
-      <List onClick={handleClick} icon={flameIcon} toggleStyle={findName.Hot}>
+      <List
+        onChange={props.handleClick}
+        icon={flameIcon}
+        toggleStyle={props.findName.Hot}
+      >
         Hot
       </List>
-      <List onClick={handleClick} icon={newIcon} toggleStyle={findName.New}>
+      <List
+        onChange={props.handleClick}
+        icon={newIcon}
+        toggleStyle={props.findName.New}
+      >
         New
       </List>
-      <List onClick={handleClick} icon={topIcon} toggleStyle={findName.Top}>
+      <List
+        onChange={props.handleClick}
+        icon={topIcon}
+        toggleStyle={props.findName.Top}
+      >
         Top
       </List>
 
@@ -43,9 +44,9 @@ const Filter = () => {
         query="(min-width: 760px)"
         render={() => (
           <List
-            onClick={handleClick}
+            onClick={props.handleClick}
             icon={risingIcon}
-            toggleStyle={findName.Rising}
+            toggleStyle={props.findName.Rising}
           >
             Rising
           </List>

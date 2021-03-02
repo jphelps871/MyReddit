@@ -4,21 +4,25 @@ const axios = require("axios");
 
 const Cards = (props) => {
   const [reddit, setReddit] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const getData = async (input) => {
       const response = await axios.get(
-        `https://www.reddit.com/r/${input}.json`
+        `https://www.reddit.com/r/${input}/hot/.json`
       );
       setReddit(response.data.data.children);
+      setLoading(true);
     };
+    setLoading(false);
     getData(props.searchReddit);
   }, [props.searchReddit]);
 
-  if (reddit) {
+  if (loading) {
     return (
       <div className="cards">
         {reddit.map((item, idx) => (
-          <div key={idx.toString()} className="card">
+          <div key={idx.toString()} className="card" style={{ marginTop: 32 }}>
             <Card
               subreddit={item.data.subreddit}
               title={item.data.title}

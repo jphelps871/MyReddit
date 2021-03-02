@@ -1,16 +1,16 @@
-const axios = require("axios");
+// const axios = require("axios");
 
-const headerData = async (userInput) => {
-  if (!userInput) userInput = "popular";
+// const headerData = async (userInput) => {
+//   if (!userInput) userInput = "popular";
 
-  const response = await axios.get(
-    `https://www.reddit.com/r/${userInput}.json`
-  );
+//   const response = await axios.get(
+//     `https://www.reddit.com/r/${userInput}.json`
+//   );
 
-  return response;
-};
+//   return response;
+// };
 
-export { headerData };
+// export { headerData };
 
 // bellow are HTTP requests, they require query params and other
 

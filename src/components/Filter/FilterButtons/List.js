@@ -12,7 +12,7 @@ const Li = (props) => {
       backgroundPosition: "2px center",
       padding: "12px 12px 12px 26px",
     };
-  } else { 
+  } else {
     active = {
       // set color to default
       color: "",
@@ -21,7 +21,7 @@ const Li = (props) => {
 
   return (
     <li>
-      <button style={active} onClick={props.onClick} name={props.children}>
+      <button style={active} onClick={props.onChange} name={props.children}>
         {props.children}
       </button>
     </li>
