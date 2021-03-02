@@ -4,25 +4,54 @@ import Filter from "../Filter/Filter";
 import Cards from "../Cards/Cards";
 import "./App.css";
 
-const App = (props) => {
-  const [searchReddit, setSearchRedit] = useState("popular");
-  const [findName, setFindName] = useState("best");
+const App = () => {
+  const [subReddit, setSubReddit] = useState("popular");
+  const [filterReddit, setFilterReddit] = useState("best");
+  const [searchReddit, setSearchReddit] = useState("");
+  const [pages, setPages] = useState(0);
 
-  const searchFor = ({ target }) => {
-    setSearchRedit(target.value);
+  const handleSubreddit = ({ target }) => {
+    setSearchReddit("");
+    setPages(0);
+    setSubReddit(target.value);
   };
 
-  const handleClick = ({ target }) => {
+  const handleFilter = ({ target }) => {
+    setPages(0);
     const filterQuery = target.name;
-    setFindName(filterQuery.toLowerCase());
+    setFilterReddit(filterQuery.toLowerCase());
+  };
+
+  const handleSearch = ({ target }) => {
+    setPages(0);
+    setSearchReddit(target.value);
   };
 
   return (
     <div className="App">
-      <Header onChange={searchFor} />
-      <Filter handleClick={handleClick} findName={findName} />
+      <Header onChange={handleSubreddit} onClick={handleSearch} />
+      <Filter handleClick={handleFilter} findName={filterReddit} />
       <main>
-        <Cards query={{ findName: findName, searchReddit: searchReddit }} />
+        <Cards
+          query={{
+            filterReddit: filterReddit,
+            subReddit: subReddit,
+            searchReddit: searchReddit,
+            pages: pages,
+          }}
+        />
+        <div
+          style={{
+            justifyContent: "center",
+            display: "flex",
+            width: "20%",
+            margin: "auto",
+          }}
+        >
+          <button onClick={() => setPages(pages - 1)}>-</button>
+          <p>{pages}</p>
+          <button onClick={() => setPages(pages + 1)}>+</button>
+        </div>
       </main>
     </div>
   );
