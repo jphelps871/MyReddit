@@ -44,7 +44,7 @@ const Filter = (props) => {
         query="(min-width: 760px)"
         render={() => (
           <List
-            onClick={props.handleClick}
+            onChange={props.handleClick}
             icon={risingIcon}
             toggleStyle={props.findName === "rising" ? true : false}
           >

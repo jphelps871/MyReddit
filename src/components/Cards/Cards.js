@@ -9,14 +9,15 @@ const Cards = (props) => {
   useEffect(() => {
     const getData = async (input) => {
       const response = await axios.get(
-        `https://www.reddit.com/r/${input}/hot/.json`
+        `https://www.reddit.com/r/${input.searchReddit}/${input.findName}.json`
       );
       setReddit(response.data.data.children);
+      console.log(response.data.data.after);
       setLoading(true);
     };
     setLoading(false);
-    getData(props.searchReddit);
-  }, [props.searchReddit]);
+    getData(props.query);
+  }, [props.query]);
 
   if (loading) {
     return (

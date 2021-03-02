@@ -22,7 +22,7 @@ const App = (props) => {
       <Header onChange={searchFor} />
       <Filter handleClick={handleClick} findName={findName} />
       <main>
-        <Cards searchReddit={searchReddit} findName={findName} />
+        <Cards query={{ findName: findName, searchReddit: searchReddit }} />
       </main>
     </div>
   );
