@@ -1,13 +1,15 @@
 import React from "react";
 import "./NavDropDown.css";
 
-const NavDropDown = () => {
+const NavDropDown = (props) => {
   return (
     <div className="drop-down">
-      <button style={{ color: "black" }} href="#">
+      <button onClick={props.onChange} value="popular" href="#">
         Popular
       </button>
-      <button href="#">All</button>
+      <button onClick={props.onChange} value="all" href="#">
+        All
+      </button>
     </div>
   );
 };

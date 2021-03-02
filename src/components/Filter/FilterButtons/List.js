@@ -21,12 +21,7 @@ const Li = (props) => {
 
   return (
     <li>
-      <button
-        style={active}
-        onClick={props.onClick}
-        name={props.children}
-        className={props.className}
-      >
+      <button style={active} onClick={props.onChange} name={props.children}>
         {props.children}
       </button>
     </li>
@@ -36,7 +31,7 @@ const Li = (props) => {
 Li.propTypes = {
   toggleStyle: PropTypes.bool.isRequired,
   icon: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   children: PropTypes.string.isRequired,
 };
 

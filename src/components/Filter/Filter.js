@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Media from "react-media";
 import "./Filter.css";
 import List from "./FilterButtons/List";
@@ -9,33 +9,34 @@ import topIcon from "./icons/topIcon.svg";
 import risingIcon from "./icons/risingIcon.svg";
 
 const Filter = (props) => {
-  const [findName, setFindName] = useState({
-    Best: true,
-    Hot: false,
-    New: false,
-    Top: false,
-    Rising: false,
-  });
-
-  const handleClick = (event) => {
-    // loop through and turn all to false
-    for (var i in findName) findName[i] = false;
-    // Switch one to true
-    setFindName({ ...findName, [event.target.name]: true });
-  };
-
   return (
     <ul className="filter">
-      <List onClick={handleClick} icon={rocketIcon} toggleStyle={findName.Best}>
+      <List
+        onChange={props.handleClick}
+        icon={rocketIcon}
+        toggleStyle={props.findName === "best" ? true : false}
+      >
         Best
       </List>
-      <List onClick={handleClick} icon={flameIcon} toggleStyle={findName.Hot}>
+      <List
+        onChange={props.handleClick}
+        icon={flameIcon}
+        toggleStyle={props.findName === "hot" ? true : false}
+      >
         Hot
       </List>
-      <List onClick={handleClick} icon={newIcon} toggleStyle={findName.New}>
+      <List
+        onChange={props.handleClick}
+        icon={newIcon}
+        toggleStyle={props.findName === "new" ? true : false}
+      >
         New
       </List>
-      <List onClick={handleClick} icon={topIcon} toggleStyle={findName.Top}>
+      <List
+        onChange={props.handleClick}
+        icon={topIcon}
+        toggleStyle={props.findName === "top" ? true : false}
+      >
         Top
       </List>
 
@@ -43,9 +44,9 @@ const Filter = (props) => {
         query="(min-width: 760px)"
         render={() => (
           <List
-            onClick={handleClick}
+            onChange={props.handleClick}
             icon={risingIcon}
-            toggleStyle={findName.Rising}
+            toggleStyle={props.findName === "rising" ? true : false}
           >
             Rising
           </List>

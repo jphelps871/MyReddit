@@ -3,10 +3,10 @@ import NavDropDown from "./NavDropDown/NavDropDown";
 import Search from "./Search/Search";
 import "./Header.css";
 
-const Header = () => {
+const Header = (props) => {
   return (
     <header className="main-container">
-      <NavDropDown />
+      <NavDropDown onChange={props.onChange} />
       <Search />
     </header>
   );
