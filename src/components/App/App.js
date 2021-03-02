@@ -6,23 +6,15 @@ import "./App.css";
 
 const App = (props) => {
   const [searchReddit, setSearchRedit] = useState("popular");
-  const [findName, setFindName] = useState({
-    Best: true,
-    Hot: false,
-    New: false,
-    Top: false,
-    Rising: false,
-  });
+  const [findName, setFindName] = useState("best");
 
   const searchFor = ({ target }) => {
     setSearchRedit(target.value);
   };
 
-  const handleClick = (event) => {
-    // loop through and turn all to false
-    for (var i in findName) findName[i] = false;
-    // Switch one to true
-    setFindName({ ...findName, [event.target.name]: true });
+  const handleClick = ({ target }) => {
+    const filterQuery = target.name;
+    setFindName(filterQuery.toLowerCase());
   };
 
   return (
@@ -30,7 +22,7 @@ const App = (props) => {
       <Header onChange={searchFor} />
       <Filter handleClick={handleClick} findName={findName} />
       <main>
-        <Cards searchReddit={searchReddit} />
+        <Cards searchReddit={searchReddit} findName={findName} />
       </main>
     </div>
   );

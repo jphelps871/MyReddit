@@ -14,28 +14,28 @@ const Filter = (props) => {
       <List
         onChange={props.handleClick}
         icon={rocketIcon}
-        toggleStyle={props.findName.Best}
+        toggleStyle={props.findName === "best" ? true : false}
       >
         Best
       </List>
       <List
         onChange={props.handleClick}
         icon={flameIcon}
-        toggleStyle={props.findName.Hot}
+        toggleStyle={props.findName === "hot" ? true : false}
       >
         Hot
       </List>
       <List
         onChange={props.handleClick}
         icon={newIcon}
-        toggleStyle={props.findName.New}
+        toggleStyle={props.findName === "new" ? true : false}
       >
         New
       </List>
       <List
         onChange={props.handleClick}
         icon={topIcon}
-        toggleStyle={props.findName.Top}
+        toggleStyle={props.findName === "top" ? true : false}
       >
         Top
       </List>
@@ -46,7 +46,7 @@ const Filter = (props) => {
           <List
             onClick={props.handleClick}
             icon={risingIcon}
-            toggleStyle={props.findName.Rising}
+            toggleStyle={props.findName === "rising" ? true : false}
           >
             Rising
           </List>
