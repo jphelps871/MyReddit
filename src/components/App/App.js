@@ -29,7 +29,12 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header onChange={handleSubreddit} onClick={handleSearch} />
+      <Header
+        onChange={handleSubreddit}
+        onClick={handleSearch}
+        subReddit={subReddit}
+        searchReddit={searchReddit}
+      />
       <Filter handleClick={handleFilter} findName={filterReddit} />
       <main>
         <Cards
@@ -40,17 +45,10 @@ const App = () => {
             pageNum: pageNum,
           }}
         />
-        <div
-          style={{
-            justifyContent: "center",
-            display: "flex",
-            width: "20%",
-            margin: "auto",
-          }}
-        >
-          <button onClick={() => setPageNum(pageNum - 1)}>-</button>
+        <div className="pager">
+          <button onClick={() => setPageNum(pageNum - 1)}>Previous</button>
           <p>{pageNum}</p>
-          <button onClick={() => setPageNum(pageNum + 1)}>+</button>
+          <button onClick={() => setPageNum(pageNum + 1)}>Next</button>
         </div>
       </main>
     </div>

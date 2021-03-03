@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavDropDown from "./NavDropDown/NavDropDown";
 import Search from "./Search/Search";
 import SubmitSearch from "./SubmitSearch/SubmitSearch";
@@ -12,7 +12,7 @@ const Header = (props) => {
 
   return (
     <header className="main-container">
-      <NavDropDown onChange={props.onChange} />
+      <NavDropDown onChange={props.onChange} subReddit={props.subReddit} />
       <Search onChange={handleSearch} />
       <SubmitSearch searchValue={searchValue} onClick={props.onClick} />
     </header>
