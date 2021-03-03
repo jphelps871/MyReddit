@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card/Card";
+import "./Cards.css";
 const axios = require("axios");
 
 const Cards = (props) => {
@@ -27,8 +28,10 @@ const Cards = (props) => {
         );
         setReddit(response.data.data.children);
         setLoading(true);
-
         pagination(props.query.pageNum, response.data.data.after);
+        console.log(
+          response.data.data.children[0].data.all_awardings[0].icon_url
+        );
       } else {
         const response = await axios.get(
           `http://www.reddit.com/search.json?q=${input.searchReddit}&sort=${
@@ -48,15 +51,24 @@ const Cards = (props) => {
     return (
       <div className="cards">
         {reddit.map((item, idx) => (
-          <div key={idx.toString()} className="card" style={{ marginTop: 32 }}>
-            <Card
-              subreddit={item.data.subreddit}
-              title={item.data.title}
-              image={item.data.url}
-              comments={item.data.num_comments}
-              upVotes={item.data.ups}
-            />
-          </div>
+          <Card
+            key={idx.toString()}
+            subRedditIcon={item.data.all_awardings[0].icon_url}
+            subreddit={item.data.subreddit_name_prefixed}
+            title={item.data.title}
+            media={{
+              image: item.data.url,
+              video: function () {
+                try {
+                  return item.data.media.reddit_video.fallback_url;
+                } catch (err) {
+                  return "";
+                }
+              },
+            }}
+            comments={item.data.num_comments}
+            upVotes={item.data.ups}
+          />
         ))}
       </div>
     );

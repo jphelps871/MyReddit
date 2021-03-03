@@ -1,18 +1,57 @@
 import React from "react";
+import "./Card.css";
+
+const checkImage = (image) => {
+  const regex = /(.jpg|.png|.gif)$/;
+  return regex.test(image) ? true : "";
+};
+
+const checkVideo = (video) => {
+  if (video) {
+    return video;
+  } else {
+    return "";
+  }
+};
+
+const editLink = (link) => {
+  const regex = /(?<=\.).+(?=\.com)/gi;
+  if (link.match(regex)) {
+    return link.match(regex);
+  } else {
+    return "Link";
+  }
+};
 
 const Card = (props) => {
   return (
-    <div style={{ width: "100%" }}>
-      <p>{props.subreddit}</p>
-      <h3>{props.title}</h3>
-      <img
-        style={{ height: "50%", width: "50%" }}
-        src={props.image}
-        alt="reddit img"
-      />
-      <p>{props.comments}</p>
-      <p>{props.upVotes}</p>
-    </div>
+    <article className="card">
+      <div className="info">
+        <div className="icon-container">
+          <img src={props.subRedditIcon} alt="subreddit Icon" />
+        </div>
+        <p className="subreddit">{props.subreddit}</p>
+      </div>
+      <h3 classame="title">{props.title}</h3>
+      <div className="media">
+        {checkImage(props.media.image) ? (
+          <img src={props.media.image} alt="reddit img" />
+        ) : checkVideo(props.media.video()) ? (
+          <video width="320" height="240" controls>
+            <source src={props.media.video()} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        ) : (
+          <button href={props.media.image}>
+            See more at {editLink(props.media.image)}
+          </button>
+        )}
+      </div>
+      <div className="metadata">
+        <p className="comments">{props.comments}</p>
+        <p className="votes">{props.upVotes}</p>
+      </div>
+    </article>
   );
 };
 
