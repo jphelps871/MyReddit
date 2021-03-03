@@ -1,6 +1,6 @@
 .search-bar {
   display: flex;
-  padding: 0.3em;
+  padding: 0.5em;
   border-radius: 10px;
   position: relative;
   overflow: hidden;

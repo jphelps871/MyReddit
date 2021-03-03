@@ -1,3 +1,7 @@
+.drop-down {
+  margin-right: auto;
+}
+
 .drop-down button {
   cursor: pointer;
   color: grey;
