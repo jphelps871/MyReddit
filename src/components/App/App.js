@@ -8,22 +8,22 @@ const App = () => {
   const [subReddit, setSubReddit] = useState("popular");
   const [filterReddit, setFilterReddit] = useState("best");
   const [searchReddit, setSearchReddit] = useState("");
-  const [pages, setPages] = useState(0);
+  const [pageNum, setPageNum] = useState(0);
 
   const handleSubreddit = ({ target }) => {
     setSearchReddit("");
-    setPages(0);
+    setPageNum(0);
     setSubReddit(target.value);
   };
 
   const handleFilter = ({ target }) => {
-    setPages(0);
+    setPageNum(0);
     const filterQuery = target.name;
     setFilterReddit(filterQuery.toLowerCase());
   };
 
   const handleSearch = ({ target }) => {
-    setPages(0);
+    setPageNum(0);
     setSearchReddit(target.value);
   };
 
@@ -37,7 +37,7 @@ const App = () => {
             filterReddit: filterReddit,
             subReddit: subReddit,
             searchReddit: searchReddit,
-            pages: pages,
+            pageNum: pageNum,
           }}
         />
         <div
@@ -48,9 +48,9 @@ const App = () => {
             margin: "auto",
           }}
         >
-          <button onClick={() => setPages(pages - 1)}>-</button>
-          <p>{pages}</p>
-          <button onClick={() => setPages(pages + 1)}>+</button>
+          <button onClick={() => setPageNum(pageNum - 1)}>-</button>
+          <p>{pageNum}</p>
+          <button onClick={() => setPageNum(pageNum + 1)}>+</button>
         </div>
       </main>
     </div>

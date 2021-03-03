@@ -5,10 +5,17 @@ const axios = require("axios");
 const Cards = (props) => {
   const [reddit, setReddit] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState([""]);
+  const [pages, setPages] = useState([""]);
 
-  console.log(page);
-  console.log(props.query.pages);
+  const pagination = (pageNum, nextPageId) => {
+    if (!pages.includes(nextPageId)) {
+      if (pages.length < pageNum + 2) {
+        setPages((prevArray) => [...prevArray, nextPageId]);
+      }
+
+      if (pageNum === 0) setPages(["", nextPageId]);
+    }
+  };
 
   useEffect(() => {
     const getData = async (input) => {
@@ -16,22 +23,17 @@ const Cards = (props) => {
         const response = await axios.get(
           `https://www.reddit.com/r/${input.subReddit}/${
             input.filterReddit
-          }.json?after=${page[input.pages]}`
+          }.json?after=${pages[input.pageNum]}`
         );
         setReddit(response.data.data.children);
         setLoading(true);
-        //  page.length < props.query.pages + 2
 
-        if (!page.includes(response.data.data.after)) {
-          if (page.length < props.query.pages + 2) {
-            setPage((prevArray) => [...prevArray, response.data.data.after]);
-          }
-
-          if (props.query.pages === 0) setPage(["", response.data.data.after]);
-        }
+        pagination(props.query.pageNum, response.data.data.after);
       } else {
         const response = await axios.get(
-          `http://www.reddit.com/search.json?q=${input.searchReddit}&sort=${input.filterReddit}`
+          `http://www.reddit.com/search.json?q=${input.searchReddit}&sort=${
+            input.filterReddit
+          }.json?after=${pages[input.pageNum]}`
         );
         setReddit(response.data.data.children);
         setLoading(true);
