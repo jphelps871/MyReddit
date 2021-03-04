@@ -1,47 +1,30 @@
-// const axios = require("axios");
+import { useEffect, useState } from "react";
+const axios = require("axios");
 
-// const headerData = async (userInput) => {
-//   if (!userInput) userInput = "popular";
+export const useFetch = (url) => {
+  let dataToCollect;
 
-//   const response = await axios.get(
-//     `https://www.reddit.com/r/${userInput}.json`
-//   );
+  if (url.searchTrue) {
+    dataToCollect = url.search;
+  } else {
+    dataToCollect = url.tabs;
+  }
 
-//   return response;
-// };
+  const [response, setResponse] = useState({
+    loading: true,
+    reddit: null,
+    nextPage: null,
+  });
+  useEffect(() => {
+    setResponse({ loading: true, reddit: null, nextPage: null });
 
-// export { headerData };
-
-// bellow are HTTP requests, they require query params and other
-
-// querys to fully function
-
-// /r/[subreddit] => many need a subredit to search popular, new, hot for example
-
-// subreddit to begin with can be popular
-
-// export const Search = () => {
-//   // https://www.reddit.com/search.json?=
-//   // needs a query string
-// };
-
-// export const New = () => {
-//   // https://www.reddit.com/r/all/new.json
-// };
-
-// export const Hot = () => {
-//   // https://www.reddit.com/r/all/hot.json
-// };
-
-// export const Top = () => {
-//   // https://www.reddit.com/r/all/top.json
-// };
-
-// export const Rising = () => {
-//   // https://www.reddit.com/r/all/rising.json
-// };
-
-// export const Location = () => {
-//   // https://www.reddit.com/r/popular.json?geo_filter=GB
-//   // GB is Great Britain
-// };
+    axios.get(dataToCollect).then((redditResponse) => {
+      setResponse({
+        loading: false,
+        reddit: redditResponse.data.data.children,
+        nextPage: redditResponse.data.data.after,
+      });
+    });
+  }, [url.tabs, dataToCollect]);
+  return response;
+};

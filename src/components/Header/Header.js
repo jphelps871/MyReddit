@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import NavDropDown from "./NavDropDown/NavDropDown";
 import Search from "./Search/Search";
 import SubmitSearch from "./SubmitSearch/SubmitSearch";

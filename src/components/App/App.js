@@ -45,11 +45,13 @@ const App = () => {
             pageNum: pageNum,
           }}
         />
-        <div className="pager">
-          <button onClick={() => setPageNum(pageNum - 1)}>Previous</button>
-          <p>{pageNum}</p>
-          <button onClick={() => setPageNum(pageNum + 1)}>Next</button>
-        </div>
+        {!searchReddit && (
+          <div className="pager">
+            <button onClick={() => setPageNum(pageNum - 1)}>Previous</button>
+            <p>{pageNum}</p>
+            <button onClick={() => setPageNum(pageNum + 1)}>Next</button>
+          </div>
+        )}
       </main>
     </div>
   );

@@ -39,7 +39,7 @@ const Card = (props) => {
             Your browser does not support the video tag.
           </video>
         ) : (
-          <a href={props.media.image} target="_blank">
+          <a href={props.media.image} target="_blank" rel="noreferrer nofollow">
             See more at {editLink(props.media.image)}
           </a>
         )}

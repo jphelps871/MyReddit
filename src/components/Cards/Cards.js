@@ -1,49 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Card from "./Card/Card";
+import { useFetch } from "../../Actions";
 import "./Cards.css";
-const axios = require("axios");
 
 const Cards = (props) => {
-  const [reddit, setReddit] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [pages, setPages] = useState([""]);
 
-  const pagination = (pageNum, nextPageId) => {
-    if (!pages.includes(nextPageId)) {
-      if (pages.length < pageNum + 2) {
-        setPages((prevArray) => [...prevArray, nextPageId]);
-      }
+  const { reddit, loading, nextPage } = useFetch({
+    tabs: `https://www.reddit.com/r/${props.query.subReddit}/${
+      props.query.filterReddit
+    }.json?after=${pages[props.query.pageNum]}`,
+    search: `http://www.reddit.com/search.json?q=${
+      props.query.searchReddit
+    }&sort=${props.query.filterReddit}.json?after=${
+      pages[props.query.pageNum]
+    }`,
+    searchTrue: props.query.searchReddit,
+  });
 
-      if (pageNum === 0) setPages(["", nextPageId]);
+  // check page id doesnt exist, and update to correct page
+  const pagination = (pageNum, nextPageId) => {
+    if (pages.includes(nextPageId)) return;
+
+    if (pages.length < pageNum + 2) {
+      setPages((prevArray) => [...prevArray, nextPageId]);
     }
+
+    if (pageNum === 0) setPages(["", nextPageId]);
   };
 
-  useEffect(() => {
-    const getData = async (input) => {
-      if (!input.searchReddit) {
-        const response = await axios.get(
-          `https://www.reddit.com/r/${input.subReddit}/${
-            input.filterReddit
-          }.json?after=${pages[input.pageNum]}`
-        );
-        setReddit(response.data.data.children);
-        setLoading(true);
-        pagination(props.query.pageNum, response.data.data.after);
-      } else {
-        const response = await axios.get(
-          `http://www.reddit.com/search.json?q=${input.searchReddit}&sort=${
-            input.filterReddit
-          }.json?after=${pages[input.pageNum]}`
-        );
-        setReddit(response.data.data.children);
-        setLoading(true);
-      }
-    };
+  pagination(props.query.pageNum, nextPage);
 
-    setLoading(false);
-    getData(props.query);
-  }, [props.query]);
-  if (loading) {
+  if (!loading) {
     return (
       <div className="cards">
         {reddit.map((item, idx) => (
