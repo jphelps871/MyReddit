@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import Media from "react-media";
 import Header from "../Header/Header";
 import Filter from "../Filter/Filter";
 import Cards from "../Cards/Cards";
+import Aside from "../Aside/Aside";
 import "./App.css";
 
 const App = () => {
@@ -37,14 +39,19 @@ const App = () => {
       />
       <Filter handleClick={handleFilter} filterReddit={filterReddit} />
       <main>
-        <Cards
-          query={{
-            filterReddit: filterReddit,
-            subReddit: subReddit,
-            searchReddit: searchReddit,
-            pageNum: pageNum,
-          }}
-        />
+        <div className="flex-main">
+          <Cards
+            query={{
+              filterReddit: filterReddit,
+              subReddit: subReddit,
+              searchReddit: searchReddit,
+              pageNum: pageNum,
+            }}
+          />
+
+          <Media query="(min-width: 1500px)" render={() => <Aside />} />
+        </div>
+
         {!searchReddit && (
           <div className="pager">
             <button

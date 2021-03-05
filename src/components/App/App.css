@@ -3,6 +3,11 @@
   margin: 0;
 }
 
+.flex-main {
+  display: flex;
+  margin-top: 24px;
+}
+
 .App {
   margin: 24px;
 }
