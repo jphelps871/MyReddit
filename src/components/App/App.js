@@ -29,8 +29,13 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header onChange={handleSubreddit} onClick={handleSearch} />
-      <Filter handleClick={handleFilter} findName={filterReddit} />
+      <Header
+        onChange={handleSubreddit}
+        onClick={handleSearch}
+        subReddit={subReddit}
+        searchReddit={searchReddit}
+      />
+      <Filter handleClick={handleFilter} filterReddit={filterReddit} />
       <main>
         <Cards
           query={{
@@ -40,18 +45,21 @@ const App = () => {
             pageNum: pageNum,
           }}
         />
-        <div
-          style={{
-            justifyContent: "center",
-            display: "flex",
-            width: "20%",
-            margin: "auto",
-          }}
-        >
-          <button onClick={() => setPageNum(pageNum - 1)}>-</button>
-          <p>{pageNum}</p>
-          <button onClick={() => setPageNum(pageNum + 1)}>+</button>
-        </div>
+        {!searchReddit && (
+          <div className="pager">
+            <button
+              onClick={() => setPageNum((prevPageNum) => prevPageNum - 1)}
+            >
+              Previous
+            </button>
+            <p>{pageNum}</p>
+            <button
+              onClick={() => setPageNum((prevPageNum) => prevPageNum + 1)}
+            >
+              Next
+            </button>
+          </div>
+        )}
       </main>
     </div>
   );

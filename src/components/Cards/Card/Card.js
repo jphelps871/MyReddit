@@ -15,7 +15,7 @@ const checkVideo = (video) => {
 };
 
 const editLink = (link) => {
-  const regex = /(?<=\.).+(?=\.com)/gi;
+  const regex = /(?<=\.).+(?=\.com|\.co)/gi;
   if (link.match(regex)) {
     return link.match(regex);
   } else {
@@ -27,9 +27,6 @@ const Card = (props) => {
   return (
     <article className="card">
       <div className="info">
-        <div className="icon-container">
-          <img src={props.subRedditIcon} alt="subreddit Icon" />
-        </div>
         <p className="subreddit">{props.subreddit}</p>
       </div>
       <h3 classame="title">{props.title}</h3>
@@ -37,14 +34,14 @@ const Card = (props) => {
         {checkImage(props.media.image) ? (
           <img src={props.media.image} alt="reddit img" />
         ) : checkVideo(props.media.video()) ? (
-          <video width="320" height="240" controls>
+          <video controls>
             <source src={props.media.video()} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         ) : (
-          <button href={props.media.image}>
+          <a href={props.media.image} target="_blank" rel="noreferrer nofollow">
             See more at {editLink(props.media.image)}
-          </button>
+          </a>
         )}
       </div>
       <div className="metadata">
