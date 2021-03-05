@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Card from "./Card/Card";
-import { useFetch } from "../../Actions";
+import { useFetchAll } from "../../Actions";
 import "./Cards.css";
 
 const Cards = (props) => {
   const [pages, setPages] = useState([""]);
 
-  const { reddit, loading, nextPage } = useFetch({
+  const { reddit, loading, nextPage } = useFetchAll({
     tabs: `https://www.reddit.com/r/${props.query.subReddit}/${
       props.query.filterReddit
     }.json?after=${pages[props.query.pageNum]}`,
