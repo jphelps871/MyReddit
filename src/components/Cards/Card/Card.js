@@ -34,7 +34,7 @@ const Card = (props) => {
         {checkImage(props.media.image) ? (
           <img src={props.media.image} alt="reddit img" />
         ) : checkVideo(props.media.video()) ? (
-          <video width="320" height="240" controls>
+          <video controls>
             <source src={props.media.video()} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
