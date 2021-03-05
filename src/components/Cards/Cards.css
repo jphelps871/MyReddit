@@ -1,7 +1,23 @@
 .cards {
-  gap: 24px;
-  align-items: flex-start;
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 1248px;
+  margin-top: 32px;
+  gap: 32px;
+  display: column;
+  columns: 3;
+}
+
+.cards > * {
+  break-inside: avoid;
+  margin-bottom: 32px;
+}
+
+@media screen and (max-width: 950px) {
+  .cards {
+    columns: 2;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .cards {
+    columns: 1;
+  }
 }

@@ -37,20 +37,24 @@ const App = () => {
         subReddit={subReddit}
         searchReddit={searchReddit}
       />
-      <Filter handleClick={handleFilter} filterReddit={filterReddit} />
+      <Media
+        query="(min-width: 1500px)"
+        render={() => <Aside className="aside" />}
+      />
+      <Filter
+        className="filter"
+        handleClick={handleFilter}
+        filterReddit={filterReddit}
+      />
       <main>
-        <div className="flex-main">
-          <Cards
-            query={{
-              filterReddit: filterReddit,
-              subReddit: subReddit,
-              searchReddit: searchReddit,
-              pageNum: pageNum,
-            }}
-          />
-
-          <Media query="(min-width: 1500px)" render={() => <Aside />} />
-        </div>
+        <Cards
+          query={{
+            filterReddit: filterReddit,
+            subReddit: subReddit,
+            searchReddit: searchReddit,
+            pageNum: pageNum,
+          }}
+        />
 
         {!searchReddit && (
           <div className="pager">

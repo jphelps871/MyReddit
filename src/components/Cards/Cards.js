@@ -3,9 +3,18 @@ import Card from "./Card/Card";
 import { useFetchAll } from "../../Actions";
 import "./Cards.css";
 
+const pagination = (pageNum, nextPageId, pages, setPages) => {
+  if (pages.includes(nextPageId)) return;
+
+  if (pages.length < pageNum + 2) {
+    setPages((prevArray) => [...prevArray, nextPageId]);
+  }
+
+  if (pageNum === 0) setPages(["", nextPageId]);
+};
+
 const Cards = (props) => {
   const [pages, setPages] = useState([""]);
-
   const { reddit, loading, nextPage } = useFetchAll({
     tabs: `https://www.reddit.com/r/${props.query.subReddit}/${
       props.query.filterReddit
@@ -18,19 +27,8 @@ const Cards = (props) => {
     searchTrue: props.query.searchReddit,
   });
 
-  // check page id doesnt exist, and update to correct page
-  const pagination = (pageNum, nextPageId) => {
-    if (pages.includes(nextPageId)) return;
-
-    if (pages.length < pageNum + 2) {
-      setPages((prevArray) => [...prevArray, nextPageId]);
-    }
-
-    if (pageNum === 0) setPages(["", nextPageId]);
-  };
-
-  pagination(props.query.pageNum, nextPage);
-
+  // check page id does not already exist in state. Update to correct page
+  pagination(props.query.pageNum, nextPage, pages, setPages);
   if (!loading) {
     return (
       <div className="cards">
