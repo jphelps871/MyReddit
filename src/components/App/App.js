@@ -35,7 +35,7 @@ const App = () => {
         subReddit={subReddit}
         searchReddit={searchReddit}
       />
-      <Filter handleClick={handleFilter} findName={filterReddit} />
+      <Filter handleClick={handleFilter} filterReddit={filterReddit} />
       <main>
         <Cards
           query={{
@@ -47,9 +47,17 @@ const App = () => {
         />
         {!searchReddit && (
           <div className="pager">
-            <button onClick={() => setPageNum(pageNum - 1)}>Previous</button>
+            <button
+              onClick={() => setPageNum((prevPageNum) => prevPageNum - 1)}
+            >
+              Previous
+            </button>
             <p>{pageNum}</p>
-            <button onClick={() => setPageNum(pageNum + 1)}>Next</button>
+            <button
+              onClick={() => setPageNum((prevPageNum) => prevPageNum + 1)}
+            >
+              Next
+            </button>
           </div>
         )}
       </main>
