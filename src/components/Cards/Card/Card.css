@@ -1,7 +1,5 @@
 .card {
-  display: flex;
-  flex-direction: column;
-  flex: 1 300px;
+  max-width: 650px;
   padding: 16px;
   border-radius: 10px;
   background: white;
@@ -27,6 +25,9 @@
 }
 
 .media a {
+  text-align: center;
+  margin: 8px 0;
+  display: inline-block;
   text-decoration: none;
   cursor: pointer;
   border: 1px solid transparent;
