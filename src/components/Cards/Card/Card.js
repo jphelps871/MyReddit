@@ -24,29 +24,32 @@ const editLink = (link) => {
 };
 
 const Card = (props) => {
+  const { subreddit, title, comments, upVotes } = props;
+  const { url, video } = props.media;
+
   return (
     <article className="card">
       <div className="info">
-        <p className="subreddit">{props.subreddit}</p>
+        <p className="subreddit">{subreddit}</p>
       </div>
-      <h3 classame="title">{props.title}</h3>
+      <h3 classame="title">{title}</h3>
       <div className="media">
-        {checkImage(props.media.image) ? (
-          <img src={props.media.image} alt="reddit img" />
-        ) : checkVideo(props.media.video()) ? (
+        {checkImage(url) ? (
+          <img src={url} alt="reddit img" />
+        ) : checkVideo(video()) ? (
           <video controls>
-            <source src={props.media.video()} type="video/mp4" />
+            <source src={video()} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         ) : (
-          <a href={props.media.image} target="_blank" rel="noreferrer nofollow">
-            See more at {editLink(props.media.image)}
+          <a href={url} target="_blank" rel="noreferrer nofollow">
+            See more at {editLink(url)}
           </a>
         )}
       </div>
       <div className="metadata">
-        <p className="comments">{props.comments}</p>
-        <p className="votes">{props.upVotes}</p>
+        <p className="comments">{comments}</p>
+        <p className="votes">{upVotes}</p>
       </div>
     </article>
   );

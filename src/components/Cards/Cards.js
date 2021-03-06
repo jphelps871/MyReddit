@@ -38,7 +38,7 @@ const Cards = (props) => {
             subreddit={item.data.subreddit_name_prefixed}
             title={item.data.title}
             media={{
-              image: item.data.url,
+              url: item.data.url,
               video: function () {
                 try {
                   return item.data.media.reddit_video.fallback_url;
