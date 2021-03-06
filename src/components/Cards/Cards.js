@@ -14,21 +14,16 @@ const pagination = (pageNum, nextPageId, pages, setPages) => {
 };
 
 const Cards = (props) => {
+  const { subReddit, filterReddit, pageNum, searchReddit } = props.query;
   const [pages, setPages] = useState([""]);
   const { reddit, loading, nextPage } = useFetchAll({
-    tabs: `https://www.reddit.com/r/${props.query.subReddit}/${
-      props.query.filterReddit
-    }.json?after=${pages[props.query.pageNum]}`,
-    search: `http://www.reddit.com/search.json?q=${
-      props.query.searchReddit
-    }&sort=${props.query.filterReddit}.json?after=${
-      pages[props.query.pageNum]
-    }`,
-    searchTrue: props.query.searchReddit,
+    tabs: `https://www.reddit.com/r/${subReddit}/${filterReddit}.json?after=${pages[pageNum]}`,
+    search: `http://www.reddit.com/search.json?q=${searchReddit}&sort=${filterReddit}.json?after=${pages[pageNum]}`,
+    searchTrue: searchReddit,
   });
 
   // check page id does not already exist in state. Update to correct page
-  pagination(props.query.pageNum, nextPage, pages, setPages);
+  pagination(pageNum, nextPage, pages, setPages);
   if (!loading) {
     return (
       <div className="cards">
