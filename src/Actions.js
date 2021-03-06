@@ -37,7 +37,6 @@ export const useFetchSubreddits = (url) => {
   useEffect(() => {
     axios.get(url).then((response) => {
       const allTrending = response.data.data.children[0].data.title;
-      console.log(allTrending);
       const regex = /(?<=\/)[a-zA-Z0-9\/_]+(?=,|\b)/gi;
       setNames(allTrending.match(regex));
     });
@@ -48,7 +47,7 @@ export const useFetchSubreddits = (url) => {
     for (let name of names) {
       promises.push(
         axios
-          .get(`https://www.reddit.com${name}/about.json`)
+          .get(`https://www.reddit.com/${name}/about.json`)
           .then((response) => response.data.data.icon_img)
       );
     }
