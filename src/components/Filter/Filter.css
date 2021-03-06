@@ -30,3 +30,7 @@
 .filter li button:focus-within {
   color: white;
 }
+
+.filter li button:hover {
+  color: darkgrey;
+}

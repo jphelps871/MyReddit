@@ -13,3 +13,7 @@
   background-color: transparent;
   margin-right: 24px;
 }
+
+.drop-down button:hover {
+  color: darkgrey;
+}

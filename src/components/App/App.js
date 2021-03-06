@@ -15,7 +15,7 @@ const App = () => {
   const handleSubreddit = ({ target }) => {
     let itemValue = target.value;
 
-    // if user clicks from cards, remove r/ from start
+    // if user clicks from card, remove r/ from start
     const regex = /(?<=\/).+/;
     if (itemValue.match(regex)) itemValue = itemValue.match(regex)[0];
 
@@ -47,7 +47,7 @@ const App = () => {
         searchReddit={searchReddit}
       />
       <Media
-        query="(min-width: 1300px)"
+        query="(min-width: 1200px)"
         render={() => <Aside className="aside" onChange={handleSubreddit} />}
       />
       <Filter
