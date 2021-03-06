@@ -12,7 +12,7 @@ article {
 }
 
 article section {
-  font-size: 14px;
+  font-size: 1rem;
   line-height: 40px;
   padding: 16px;
   display: flex;
@@ -20,7 +20,7 @@ article section {
 }
 
 .imgIcon {
-  margin-right: 0.5em;
+  margin-right: 0.7em;
   width: 40px;
   height: 40px;
   border-radius: 50%;

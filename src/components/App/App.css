@@ -7,6 +7,17 @@
   margin: 24px;
 }
 
+.anchor-subreddit {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+}
+
+.anchor-subreddit:hover {
+  color: #f74302;
+}
+
 .pager {
   padding-top: 24px;
   justify-content: center;

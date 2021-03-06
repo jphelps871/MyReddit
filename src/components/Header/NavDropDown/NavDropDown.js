@@ -25,6 +25,11 @@ const NavDropDown = (props) => {
       >
         All
       </button>
+      {props.subReddit !== "popular" || props.subReddit !== "popular" ? (
+        <span style={props.subReddit ? active : null}>{props.subReddit}</span>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

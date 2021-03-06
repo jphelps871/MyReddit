@@ -2,12 +2,13 @@
   margin-right: auto;
 }
 
-.drop-down button {
+.drop-down button,
+.drop-down span {
   cursor: pointer;
   color: grey;
   font-family: inherit;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 22px;
   border: none;
   background-color: transparent;
   margin-right: 24px;

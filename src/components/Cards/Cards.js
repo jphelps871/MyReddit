@@ -16,7 +16,7 @@ const pagination = (pageNum, nextPageId, pages, setPages) => {
 const Cards = (props) => {
   const { subReddit, filterReddit, pageNum, searchReddit } = props.query;
   const [pages, setPages] = useState([""]);
-  const { reddit, loading, nextPage } = useFetchAll({
+  const { redditData, loading, nextPage } = useFetchAll({
     tabs: `https://www.reddit.com/r/${subReddit}/${filterReddit}.json?after=${pages[pageNum]}`,
     search: `http://www.reddit.com/search.json?q=${searchReddit}&sort=${filterReddit}.json?after=${pages[pageNum]}`,
     searchTrue: searchReddit,
@@ -27,13 +27,14 @@ const Cards = (props) => {
   if (!loading) {
     return (
       <div className="cards">
-        {reddit.map((item, idx) => (
+        {redditData.map((item, idx) => (
           <Card
+            onClick={props.onChange}
             key={idx.toString()}
             subreddit={item.data.subreddit_name_prefixed}
             title={item.data.title}
             media={{
-              image: item.data.url,
+              url: item.data.url,
               video: function () {
                 try {
                   return item.data.media.reddit_video.fallback_url;
