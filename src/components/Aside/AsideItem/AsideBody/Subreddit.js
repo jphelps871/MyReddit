@@ -5,7 +5,7 @@ const Subreddit = (props) => {
     <button
       onClick={props.onClick}
       value={props.subredditName}
-      className="anchor-subreddit"
+      className="anchor-subreddit subreddit-link"
     >
       {props.subredditName}
     </button>

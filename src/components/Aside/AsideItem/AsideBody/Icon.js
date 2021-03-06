@@ -1,5 +1,6 @@
 import React from "react";
-import SnooImg from "../../../assets/icons/aside-images/snooIcon.svg";
+import "./AsideBody.css";
+import SnooImg from "../../../../assets/icons/aside-images/snooIcon.svg";
 
 const Icon = (props) => {
   return (

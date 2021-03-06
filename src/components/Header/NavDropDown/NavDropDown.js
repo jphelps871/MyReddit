@@ -10,7 +10,9 @@ const NavDropDown = (props) => {
   return (
     <div className="drop-down">
       <button
-        style={props.subReddit === "popular" ? active : null}
+        style={
+          props.subReddit === "popular" && !props.searchReddit ? active : null
+        }
         onClick={props.onChange}
         value="popular"
         href="#"
@@ -18,14 +20,14 @@ const NavDropDown = (props) => {
         Popular
       </button>
       <button
-        style={props.subReddit === "all" ? active : null}
+        style={props.subReddit === "all" && !props.searchReddit ? active : null}
         onClick={props.onChange}
         value="all"
         href="#"
       >
         All
       </button>
-      {props.subReddit !== "popular" || props.subReddit !== "popular" ? (
+      {props.subReddit !== "popular" && props.subReddit !== "all" ? (
         <span style={props.subReddit ? active : null}>{props.subReddit}</span>
       ) : (
         <></>

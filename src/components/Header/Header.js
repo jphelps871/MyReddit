@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavDropDown from "./NavDropDown/NavDropDown";
 import Search from "./Search/Search";
 import SubmitSearch from "./SubmitSearch/SubmitSearch";
@@ -10,11 +10,19 @@ const Header = (props) => {
     setSearchValue(target.value);
   };
 
+  useEffect(() => {
+    if (props.searchReddit) setSearchValue("");
+  }, [props.searchReddit]);
+
   return (
     <header className="main-container">
-      <NavDropDown onChange={props.onChange} subReddit={props.subReddit} />
+      <NavDropDown
+        onChange={props.onChange}
+        subReddit={props.subReddit}
+        searchReddit={props.searchReddit}
+      />
       <Search onChange={handleSearch} />
-      <SubmitSearch searchValue={searchValue} onClick={props.onClick} />
+      <SubmitSearch onClick={props.onClick} searchValue={searchValue} />
     </header>
   );
 };

@@ -17,9 +17,9 @@ const checkVideo = (video) => {
 const editLink = (link) => {
   const regex = /(?<=\.).+(?=\.com|\.co)/gi;
   if (link.match(regex)) {
-    return link.match(regex);
+    return `at ${link.match(regex)}`;
   } else {
-    return "Link";
+    return "";
   }
 };
 
@@ -49,7 +49,7 @@ const Card = (props) => {
           </video>
         ) : (
           <a href={props.media.url} target="_blank" rel="noreferrer nofollow">
-            See more at {editLink(url)}
+            See more {editLink(url)}
           </a>
         )}
       </div>

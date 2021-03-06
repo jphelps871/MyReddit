@@ -2,9 +2,15 @@
   padding: 0;
   margin: 0;
 }
-
+/* 
 .App {
   margin: 24px;
+} */
+
+.App {
+  padding: 0 32px;
+  margin: auto;
+  max-width: 1400px;
 }
 
 .anchor-subreddit {
