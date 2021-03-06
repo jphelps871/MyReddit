@@ -30,7 +30,13 @@ const Card = (props) => {
   return (
     <article className="card">
       <div className="info">
-        <a className="subreddit">{subreddit}</a>
+        <button
+          onClick={props.onClick}
+          value={subreddit}
+          className="subreddit anchor-subreddit"
+        >
+          {subreddit}
+        </button>
       </div>
       <h3 classame="title">{title}</h3>
       <div className="media">
@@ -42,7 +48,7 @@ const Card = (props) => {
             Your browser does not support the video tag.
           </video>
         ) : (
-          <a href={url} target="_blank" rel="noreferrer nofollow">
+          <a href={props.media.url} target="_blank" rel="noreferrer nofollow">
             See more at {editLink(url)}
           </a>
         )}

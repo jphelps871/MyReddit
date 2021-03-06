@@ -13,18 +13,27 @@ const App = () => {
   const [pageNum, setPageNum] = useState(0);
 
   const handleSubreddit = ({ target }) => {
+    let itemValue = target.value;
+
+    // if user clicks from cards, remove r/ from start
+    const regex = /(?<=\/).+/;
+    if (itemValue.match(regex)) itemValue = itemValue.match(regex)[0];
+
     setSearchReddit("");
+    // reset pagination
     setPageNum(0);
-    setSubReddit(target.value);
+    setSubReddit(itemValue);
   };
 
   const handleFilter = ({ target }) => {
+    // reset pagination
     setPageNum(0);
     const filterQuery = target.name;
     setFilterReddit(filterQuery.toLowerCase());
   };
 
   const handleSearch = ({ target }) => {
+    // reset pagination
     setPageNum(0);
     setSearchReddit(target.value);
   };
@@ -39,7 +48,7 @@ const App = () => {
       />
       <Media
         query="(min-width: 1300px)"
-        render={() => <Aside className="aside" />}
+        render={() => <Aside className="aside" onChange={handleSubreddit} />}
       />
       <Filter
         className="filter"
@@ -48,6 +57,8 @@ const App = () => {
       />
       <main>
         <Cards
+          onChange={handleSubreddit}
+          // have an onChange function which runs when user clicks the subreddit
           query={{
             filterReddit: filterReddit,
             subReddit: subReddit,

@@ -12,17 +12,17 @@ export const useFetchAll = (url) => {
 
   const [response, setResponse] = useState({
     loading: true,
-    reddit: null,
+    redditData: null,
     nextPage: null,
   });
 
   useEffect(() => {
-    setResponse({ loading: true, reddit: null, nextPage: null });
+    setResponse({ loading: true, redditData: null, nextPage: null });
 
     axios.get(dataToCollect).then((redditResponse) => {
       setResponse({
         loading: false,
-        reddit: redditResponse.data.data.children,
+        redditData: redditResponse.data.data.children,
         nextPage: redditResponse.data.data.after,
       });
     });
@@ -37,7 +37,8 @@ export const useFetchSubreddits = (url) => {
   useEffect(() => {
     axios.get(url).then((response) => {
       const allTrending = response.data.data.children[0].data.title;
-      const regex = /(?<=,\s)[a-z0-9/_]+(?=,|\b)/gi;
+      console.log(allTrending);
+      const regex = /(?<=\/)[a-zA-Z0-9\/_]+(?=,|\b)/gi;
       setNames(allTrending.match(regex));
     });
   }, [url]);

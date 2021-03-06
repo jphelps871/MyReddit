@@ -17,7 +17,7 @@ const organiseData = (text, img) => {
   return allSubreddits;
 };
 
-const TrendingSub = () => {
+const TrendingSub = (props) => {
   const { names, icons } = useFetchSubreddits(
     "https://www.reddit.com/r/trendingsubreddits.json"
   );
@@ -32,7 +32,11 @@ const TrendingSub = () => {
       {subredditData.map((data, idx) => (
         <section key={idx}>
           <Icon srcIcon={data[0]} key={data[0]} />
-          <Subreddit subredditName={data[1]} key={data[1]} />
+          <Subreddit
+            onClick={props.onClick}
+            subredditName={data[1]}
+            key={data[1]}
+          />
         </section>
       ))}
     </article>
