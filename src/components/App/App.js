@@ -38,7 +38,7 @@ const App = () => {
         searchReddit={searchReddit}
       />
       <Media
-        query="(min-width: 1500px)"
+        query="(min-width: 1300px)"
         render={() => <Aside className="aside" />}
       />
       <Filter
