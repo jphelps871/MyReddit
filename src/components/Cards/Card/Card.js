@@ -30,7 +30,7 @@ const Card = (props) => {
   return (
     <article className="card">
       <div className="info">
-        <p className="subreddit">{subreddit}</p>
+        <a className="subreddit">{subreddit}</a>
       </div>
       <h3 classame="title">{title}</h3>
       <div className="media">
