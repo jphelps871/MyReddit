@@ -28,7 +28,6 @@ export const useFetchAll = (url) => {
       });
     });
   }, [url.tabs, dataToCollect]);
-  console.log(response);
   return response;
 };
 
