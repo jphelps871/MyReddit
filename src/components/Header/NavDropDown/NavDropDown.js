@@ -1,39 +1,51 @@
-import React from "react";
-import "./NavDropDown.css";
+import React from 'react';
+import PropTypes from 'prop-types';
+import './NavDropDown.css';
 
-const NavDropDown = (props) => {
+const NavDropDown = ({ subReddit, searchReddit, onChange }) => {
   const active = {
-    fontWeight: "bold",
-    color: "black",
+    fontWeight: 'bold',
+    color: 'black',
   };
 
   return (
     <div className="drop-down">
       <button
-        style={
-          props.subReddit === "popular" && !props.searchReddit ? active : null
-        }
-        onClick={props.onChange}
+        type="button"
+        style={subReddit === 'popular' && !searchReddit ? active : null}
+        onClick={onChange}
         value="popular"
         href="#"
       >
         Popular
       </button>
       <button
-        style={props.subReddit === "all" && !props.searchReddit ? active : null}
-        onClick={props.onChange}
+        type="button"
+        style={subReddit === 'all' && !searchReddit ? active : null}
+        onClick={onChange}
         value="all"
         href="#"
       >
         All
       </button>
-      {props.subReddit !== "popular" && props.subReddit !== "all" ? (
-        <span style={props.subReddit ? active : null}>{props.subReddit}</span>
+      {subReddit !== 'popular' && subReddit !== 'all' ? (
+        <span style={subReddit ? active : null}>{subReddit}</span>
       ) : (
         <></>
       )}
     </div>
   );
+};
+
+NavDropDown.propTypes = {
+  subReddit: PropTypes.string.isRequired,
+  searchReddit: PropTypes.string,
+  onChange: PropTypes.func,
+};
+
+NavDropDown.defaultProps = {
+  searchReddit: '',
+  onChange: () => {},
 };
 
 export default NavDropDown;

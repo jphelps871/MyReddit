@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-const axios = require("axios");
+import { useEffect, useState } from 'react';
+
+const axios = require('axios');
 
 export const useFetchAll = (url) => {
   let dataToCollect;
@@ -27,6 +28,7 @@ export const useFetchAll = (url) => {
       });
     });
   }, [url.tabs, dataToCollect]);
+  console.log(response);
   return response;
 };
 
@@ -37,23 +39,23 @@ export const useFetchSubreddits = (url) => {
   useEffect(() => {
     axios.get(url).then((response) => {
       const allTrending = response.data.data.children[0].data.title;
-      const regex = /(?<=\/)[a-zA-Z0-9\/_]+(?=,|\b)/gi;
+      const regex = /(?<=\/)[a-zA-Z0-9/_]+(?=,|\b)/gi;
       setNames(allTrending.match(regex));
     });
   }, [url]);
 
   useEffect(() => {
     const promises = [];
-    for (let name of names) {
+    names.forEach((name) => {
       promises.push(
         axios
           .get(`https://www.reddit.com/${name}/about.json`)
-          .then((response) => response.data.data.icon_img)
+          .then((response) => response.data.data.icon_img),
       );
-    }
+    });
 
     Promise.all(promises).then((responseIcon) => setIcons(responseIcon));
   }, [names]);
 
-  return { names: names, icons: icons };
+  return { names, icons };
 };

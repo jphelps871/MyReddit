@@ -1,31 +1,36 @@
-import React from "react";
-import AsideItem from "./AsideItem/AsideItem";
-import { useFetchSubreddits } from "../../Actions";
-import { staticSubreddits } from "../../MyData";
-import trendingHeaderImage from "../../assets/icons/aside-images/trending-header.png";
-import myRedditHeaderImage from "../../assets/icons/aside-images/my-reddit-header.jpg";
-import "./Aside.css";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const Aside = (props) => {
+import AsideItem from './AsideItem/AsideItem';
+import { useFetchSubreddits } from '../../Actions';
+import staticSubreddits from '../../MyData';
+import trendingHeaderImage from '../../assets/icons/aside-images/trending-header.png';
+import myRedditHeaderImage from '../../assets/icons/aside-images/my-reddit-header.jpg';
+import './Aside.css';
+
+const Aside = ({ onChange }) => {
   const { names, icons } = useFetchSubreddits(
-    "https://www.reddit.com/r/trendingsubreddits.json"
+    'https://www.reddit.com/r/trendingsubreddits.json',
   );
 
   const { staticNames, staticIcons } = staticSubreddits();
 
+  const trendingHeaderTitle = 'Todays trending subreddits';
+  const myRedditHeaderTitle = 'My Reddits';
+
   return (
     <aside>
       <AsideItem
-        heading={"Todays trending subreddits"}
+        heading={trendingHeaderTitle}
         image={trendingHeaderImage}
-        onClick={props.onChange}
+        onClick={onChange}
         names={names}
         icons={icons}
       />
       <AsideItem
-        heading={"My Reddits"}
+        heading={myRedditHeaderTitle}
         image={myRedditHeaderImage}
-        onClick={props.onChange}
+        onClick={onChange}
         names={staticNames}
         icons={staticIcons}
       />
@@ -33,4 +38,11 @@ const Aside = (props) => {
   );
 };
 
+Aside.propTypes = {
+  onChange: PropTypes.func,
+};
+
+Aside.defaultProps = {
+  onChange: () => {},
+};
 export default Aside;

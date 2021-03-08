@@ -1,30 +1,46 @@
-import React, { useEffect, useState } from "react";
-import NavDropDown from "./NavDropDown/NavDropDown";
-import Search from "./Search/Search";
-import SubmitSearch from "./SubmitSearch/SubmitSearch";
-import "./Header.css";
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import NavDropDown from './NavDropDown/NavDropDown';
+import Search from './Search/Search';
+import SubmitSearch from './SubmitSearch/SubmitSearch';
+import './Header.css';
 
-const Header = (props) => {
-  const [searchValue, setSearchValue] = useState("");
+// eslint-disable-next-line object-curly-newline
+const Header = ({ searchReddit, subReddit, onChange, onClick }) => {
+  const [searchValue, setSearchValue] = useState('');
   const handleSearch = ({ target }) => {
     setSearchValue(target.value);
   };
 
   useEffect(() => {
-    if (props.searchReddit) setSearchValue("");
-  }, [props.searchReddit]);
+    if (searchReddit) setSearchValue('');
+  }, [searchReddit]);
 
   return (
     <header className="main-container">
       <NavDropDown
-        onChange={props.onChange}
-        subReddit={props.subReddit}
-        searchReddit={props.searchReddit}
+        onChange={onChange}
+        subReddit={subReddit}
+        searchReddit={searchReddit}
       />
       <Search onChange={handleSearch} />
-      <SubmitSearch onClick={props.onClick} searchValue={searchValue} />
+      <SubmitSearch onClick={onClick} searchValue={searchValue} />
     </header>
   );
+};
+
+Header.propTypes = {
+  searchReddit: PropTypes.string,
+  subReddit: PropTypes.string,
+  onChange: PropTypes.func,
+  onClick: PropTypes.func,
+};
+
+Header.defaultProps = {
+  searchReddit: '',
+  subReddit: '',
+  onChange: () => {},
+  onClick: () => {},
 };
 
 export default Header;
