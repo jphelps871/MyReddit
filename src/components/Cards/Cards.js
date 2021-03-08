@@ -33,6 +33,7 @@ const Cards = ({ query, onChange }) => {
           <Card
             onClick={onChange}
             key={idx.toString()}
+            hide={item.data.over_18}
             subreddit={item.data.subreddit_name_prefixed}
             title={item.data.title}
             url={item.data.url}
