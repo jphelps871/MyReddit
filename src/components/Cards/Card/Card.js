@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React from 'react';
 import PropTypes from 'prop-types';
+import HideCard from './HideCard';
 import './Card.css';
 
 const displayImage = (imageSource) => {
@@ -35,33 +36,46 @@ const displayLink = (linkSource) => {
   return <div />;
 };
 
-// eslint-disable-next-line object-curly-newline
-const Card = ({ subreddit, title, comments, upVotes, onClick, url, video }) => (
-  <article className="card">
-    <div className="info">
-      <button
-        type="button"
-        onClick={onClick}
-        value={subreddit}
-        className="subreddit anchor-subreddit"
-      >
-        {subreddit}
-      </button>
-    </div>
-    <h3 classame="title">{title}</h3>
-    <div className="media">
-      {displayImage(url)}
-      {displayVideo(video)}
-      {displayLink(url)}
-    </div>
-    <div className="metadata">
-      <p className="comments">{comments}</p>
-      <p className="votes">{upVotes}</p>
-    </div>
-  </article>
-);
+const Card = ({
+  hide,
+  subreddit,
+  title,
+  comments,
+  upVotes,
+  url,
+  video,
+  onClick,
+}) => {
+  if (hide) return <HideCard />;
+
+  return (
+    <article className="card">
+      <div className="info">
+        <button
+          type="button"
+          onClick={onClick}
+          value={subreddit}
+          className="subreddit anchor-subreddit"
+        >
+          {subreddit}
+        </button>
+      </div>
+      <h3 classame="title">{title}</h3>
+      <div className="media">
+        {displayImage(url)}
+        {displayVideo(video)}
+        {displayLink(url)}
+      </div>
+      <div className="metadata">
+        <p className="comments">{comments}</p>
+        <p className="votes">{upVotes}</p>
+      </div>
+    </article>
+  );
+};
 
 Card.propTypes = {
+  hide: PropTypes.bool.isRequired,
   subreddit: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   comments: PropTypes.number.isRequired,
