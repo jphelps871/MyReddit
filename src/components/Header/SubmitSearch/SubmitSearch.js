@@ -1,21 +1,32 @@
-import React from "react";
-import "./SubmitSearch.css";
+import React from 'react';
+import PropTypes from 'prop-types';
+import './SubmitSearch.css';
 
-const SubmitSearch = (props) => {
+const SubmitSearch = ({ searchValue, onClick }) => {
   // show button if props.searchvalue is true, else hide it.
   // when user has clicked header, reset search
 
-  if (props.searchValue) {
+  if (searchValue) {
     return (
       <div className="submitSearch">
-        <button value={props.searchValue} onClick={props.onClick}>
+        <button type="button" value={searchValue} onClick={onClick}>
           Search
         </button>
       </div>
     );
-  } else {
-    return null;
   }
+
+  return null;
+};
+
+SubmitSearch.propTypes = {
+  searchValue: PropTypes.string,
+  onClick: PropTypes.func,
+};
+
+SubmitSearch.defaultProps = {
+  searchValue: '',
+  onClick: () => {},
 };
 
 export default SubmitSearch;

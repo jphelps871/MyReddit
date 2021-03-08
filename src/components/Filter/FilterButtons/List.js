@@ -1,28 +1,29 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const Li = (props) => {
+// eslint-disable-next-line object-curly-newline
+const Li = ({ toggleStyle, onChange, children, icon }) => {
   let active;
-  if (props.toggleStyle) {
+  if (toggleStyle) {
     active = {
-      color: "white",
-      backgroundColor: "#f74302",
-      boxShadow: "2px 2px 20px rgba(0, 0, 0, 0.3)",
-      backgroundImage: `url(${props.icon})`,
-      backgroundPosition: "2px center",
-      padding: "12px 12px 12px 26px",
+      color: 'white',
+      backgroundColor: '#f74302',
+      boxShadow: '2px 2px 20px rgba(0, 0, 0, 0.3)',
+      backgroundImage: `url(${icon})`,
+      backgroundPosition: '2px center',
+      padding: '12px 12px 12px 26px',
     };
   } else {
     active = {
       // set color to default
-      color: "",
+      color: '',
     };
   }
 
   return (
     <li>
-      <button style={active} onClick={props.onChange} name={props.children}>
-        {props.children}
+      <button type="button" style={active} onClick={onChange} name={children}>
+        {children}
       </button>
     </li>
   );
@@ -31,8 +32,12 @@ const Li = (props) => {
 Li.propTypes = {
   toggleStyle: PropTypes.bool.isRequired,
   icon: PropTypes.string.isRequired,
-  onClick: PropTypes.func,
   children: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
+};
+
+Li.defaultProps = {
+  onChange: () => {},
 };
 
 export default Li;
