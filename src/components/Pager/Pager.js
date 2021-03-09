@@ -7,11 +7,21 @@ const Pager = ({ onClick, searchRedditValue, pageNum }) => {
 
   return (
     <div className="pager">
-      <button value="previous" type="button" onClick={onClick}>
+      <button
+        aria-label="Previous page"
+        value="previous"
+        type="button"
+        onClick={onClick}
+      >
         Previous
       </button>
       <p>{pageNum}</p>
-      <button value="next" type="button" onClick={onClick}>
+      <button
+        aria-label="next page"
+        value="next"
+        type="button"
+        onClick={onClick}
+      >
         Next
       </button>
     </div>

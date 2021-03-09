@@ -10,7 +10,7 @@ import topIcon from './icons/topIcon.svg';
 import risingIcon from './icons/risingIcon.svg';
 
 const Filter = ({ onClick, filterRedditValue }) => (
-  <ul className="filter">
+  <ul aria-label="filter subreddit" className="filter">
     <List
       onClick={onClick}
       icon={rocketIcon}

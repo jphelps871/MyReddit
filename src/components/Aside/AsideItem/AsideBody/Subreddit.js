@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 const Subreddit = ({ onClick, subredditName }) => (
   <button
+    aria-label={`subreddit ${subredditName}`}
     type="button"
     onClick={onClick}
     value={subredditName}

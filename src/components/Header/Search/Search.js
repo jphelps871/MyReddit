@@ -5,14 +5,9 @@ import './Search.css';
 
 const Search = ({ onChange }) => (
   <div className="search-bar">
-    <input
-      onChange={onChange}
-      type="text"
-      aria-label="search"
-      placeholder="Search Reddit"
-    />
-    <button type="button">
-      <img src={searchLogo} alt="Logo" aria-label="submit search" />
+    <input onChange={onChange} type="text" placeholder="Search Reddit" />
+    <button type="button" aria-label="submit">
+      <img src={searchLogo} alt="" />
     </button>
   </div>
 );

@@ -5,11 +5,7 @@ import SnooImg from '../../../../assets/icons/aside-images/snooIcon.svg';
 
 const Icon = ({ srcIcon }) => (
   <div className="imgIcon">
-    {srcIcon ? (
-      <img src={srcIcon} alt="subreddit icon" />
-    ) : (
-      <img src={SnooImg} alt="subreddit icon" />
-    )}
+    {srcIcon ? <img src={srcIcon} alt="" /> : <img src={SnooImg} alt="" />}
   </div>
 );
 

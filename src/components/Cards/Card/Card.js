@@ -7,7 +7,7 @@ import './Card.css';
 const displayImage = (imageSource) => {
   const regex = /(.jpg|.png|.gif)$/;
   if (regex.test(imageSource)) {
-    return <img src={imageSource} alt="reddit img" />;
+    return <img src={imageSource} alt="reddit" />;
   }
   return <div />;
 };
@@ -49,9 +49,10 @@ const Card = ({
   if (hide) return <HideCard />;
 
   return (
-    <article className="card">
+    <article aria-label="subreddit post" className="card">
       <div className="info">
         <button
+          aria-label="subreddit"
           type="button"
           onClick={onClick}
           value={subreddit}
@@ -67,8 +68,12 @@ const Card = ({
         {displayLink(url)}
       </div>
       <div className="metadata">
-        <p className="comments">{comments}</p>
-        <p className="votes">{upVotes}</p>
+        <p className="comments" aria-label="comments">
+          {comments}
+        </p>
+        <p className="votes" aria-label="upvotes">
+          {upVotes}
+        </p>
       </div>
     </article>
   );
