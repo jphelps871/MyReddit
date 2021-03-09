@@ -1,0 +1,25 @@
+.pager {
+  padding: 24px 0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin: auto;
+}
+
+.pager button {
+  font-weight: bold;
+  cursor: pointer;
+  border: 1px solid #f74302;
+  background-color: transparent;
+  padding: 12px 24px;
+  border-radius: 50px;
+}
+
+.pager p {
+  margin: 0 8px;
+}
+
+.pager button:hover {
+  background-color: #f74302;
+  color: white;
+}

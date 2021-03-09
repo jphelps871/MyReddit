@@ -5,6 +5,7 @@ import Header from '../Header/Header';
 import Filter from '../Filter/Filter';
 import Cards from '../Cards/Cards';
 import Aside from '../Aside/Aside';
+import Pager from '../Pager/Pager';
 import './App.css';
 
 const App = () => {
@@ -40,6 +41,13 @@ const App = () => {
     setSearchReddit(target.value);
   };
 
+  const handlePageNumbers = ({ target }) => {
+    if (target.value === 'next') {
+      setPageNum((prevPageNum) => prevPageNum + 1);
+    }
+    setPageNum((prevPageNum) => prevPageNum - 1);
+  };
+
   return (
     <div className="App">
       <Header
@@ -62,7 +70,6 @@ const App = () => {
       <main>
         <Cards
           onChange={handleCardsSubreddit}
-          // have an onChange function which runs when user clicks the subreddit
           query={{
             filterReddit,
             subReddit,
@@ -71,23 +78,11 @@ const App = () => {
           }}
         />
 
-        {!searchReddit && (
-          <div className="pager">
-            <button
-              type="button"
-              onClick={() => setPageNum((prevPageNum) => prevPageNum - 1)}
-            >
-              Previous
-            </button>
-            <p>{pageNum}</p>
-            <button
-              type="button"
-              onClick={() => setPageNum((prevPageNum) => prevPageNum + 1)}
-            >
-              Next
-            </button>
-          </div>
-        )}
+        <Pager
+          onClick={handlePageNumbers}
+          searchReddit={searchReddit}
+          pageNum={pageNum}
+        />
       </main>
     </div>
   );
