@@ -9,6 +9,21 @@
   max-width: 1400px;
 }
 
+.title {
+  color: white;
+  margin: auto;
+  margin-top: 16px;
+  width: 100%;
+  text-align: center;
+  padding: 1.6em 0;
+  border-radius: 10px;
+
+  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url(../../assets/icons/title-background/title-background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .anchor-subreddit {
   cursor: pointer;
   border: none;
@@ -18,4 +33,10 @@
 
 .anchor-subreddit:hover {
   color: #f74302;
+}
+
+@media screen and (max-width: 400px) {
+  h1 {
+    font-size: 30px;
+  }
 }

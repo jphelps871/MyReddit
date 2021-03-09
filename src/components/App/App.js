@@ -50,6 +50,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <h1 className="title">A James Phelps Design For Reddit</h1>
       <Header
         onClick={handleHeaderSubreddit}
         onSubmit={handleSearch}
