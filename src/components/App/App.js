@@ -42,10 +42,11 @@ const App = () => {
   };
 
   const handlePageNumbers = ({ target }) => {
-    if (target.value === 'next') {
+    if (target.value === 'next' && pageNum >= 0) {
       setPageNum((prevPageNum) => prevPageNum + 1);
+    } else if (target.value === 'previous' && pageNum > 0) {
+      setPageNum((prevPageNum) => prevPageNum - 1);
     }
-    setPageNum((prevPageNum) => prevPageNum - 1);
   };
 
   return (
