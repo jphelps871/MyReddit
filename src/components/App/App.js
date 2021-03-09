@@ -15,13 +15,18 @@ const App = () => {
   const [pageNum, setPageNum] = useState(0);
 
   const handleCardsSubreddit = ({ target }) => {
-    const cardValue = target.value;
-    const [itemValue] = cardValue.match(/(?<=\/).+/);
+    try {
+      const cardValue = target.value;
+      const [itemValue] = cardValue.match(/[^/]\w+/);
 
-    setSearchReddit('');
-    // reset pagination
-    setPageNum(0);
-    setSubReddit(itemValue);
+      setSearchReddit('');
+      // reset pagination
+      setPageNum(0);
+      setSubReddit(itemValue);
+    } catch (err) {
+      // This needs to be set up with an error state!!
+      setSubReddit('popular ');
+    }
   };
 
   const handleHeaderSubreddit = ({ target }) => {

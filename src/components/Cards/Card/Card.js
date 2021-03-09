@@ -1,5 +1,7 @@
+/* eslint-disable arrow-body-style */
 /* eslint-disable jsx-a11y/media-has-caption */
 import React from 'react';
+import extractDomain from 'extract-domain';
 import PropTypes from 'prop-types';
 import HideCard from './HideCard';
 import './Card.css';
@@ -25,15 +27,11 @@ const displayVideo = (videoSource) => {
 };
 
 const displayLink = (linkSource) => {
-  const regex = /(?<=\.).+(?=\.com|\.co)/gi;
-  if (linkSource.match(regex)) {
-    return (
-      <a href={linkSource} target="_blank" rel="noreferrer nofollow">
-        {`See more at ${linkSource.match(regex)}`}
-      </a>
-    );
-  }
-  return <div />;
+  return (
+    <a href={linkSource} target="_blank" rel="noreferrer nofollow">
+      {`See more at ${extractDomain(linkSource)}`}
+    </a>
+  );
 };
 
 const Card = ({

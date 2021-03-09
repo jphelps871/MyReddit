@@ -38,7 +38,7 @@ export const useFetchSubreddits = (url) => {
   useEffect(() => {
     axios.get(url).then((response) => {
       const allTrending = response.data.data.children[0].data.title;
-      const regex = /(?<=\/)[a-zA-Z0-9/_]+(?=,|\b)/gi;
+      const regex = /\w\/\w+/gi;
       setNames(allTrending.match(regex));
     });
   }, [url]);
