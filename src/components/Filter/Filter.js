@@ -9,33 +9,33 @@ import newIcon from './icons/newIcon.svg';
 import topIcon from './icons/topIcon.svg';
 import risingIcon from './icons/risingIcon.svg';
 
-const Filter = ({ handleClick, filterReddit }) => (
+const Filter = ({ onClick, filterRedditValue }) => (
   <ul className="filter">
     <List
-      onChange={handleClick}
+      onClick={onClick}
       icon={rocketIcon}
-      toggleStyle={filterReddit === 'best'}
+      toggleStyle={filterRedditValue === 'best'}
     >
       Best
     </List>
     <List
-      onChange={handleClick}
+      onClick={onClick}
       icon={flameIcon}
-      toggleStyle={filterReddit === 'hot'}
+      toggleStyle={filterRedditValue === 'hot'}
     >
       Hot
     </List>
     <List
-      onChange={handleClick}
+      onClick={onClick}
       icon={newIcon}
-      toggleStyle={filterReddit === 'new'}
+      toggleStyle={filterRedditValue === 'new'}
     >
       New
     </List>
     <List
-      onChange={handleClick}
+      onClick={onClick}
       icon={topIcon}
-      toggleStyle={filterReddit === 'top'}
+      toggleStyle={filterRedditValue === 'top'}
     >
       Top
     </List>
@@ -44,9 +44,9 @@ const Filter = ({ handleClick, filterReddit }) => (
       query="(min-width: 760px)"
       render={() => (
         <List
-          onChange={handleClick}
+          onClick={onClick}
           icon={risingIcon}
-          toggleStyle={filterReddit === 'rising'}
+          toggleStyle={filterRedditValue === 'rising'}
         >
           Rising
         </List>
@@ -56,13 +56,12 @@ const Filter = ({ handleClick, filterReddit }) => (
 );
 
 Filter.propTypes = {
-  handleClick: PropTypes.func,
-  filterReddit: PropTypes.string,
+  onClick: PropTypes.func,
+  filterRedditValue: PropTypes.string.isRequired,
 };
 
 Filter.defaultProps = {
-  handleClick: () => {},
-  filterReddit: '',
+  onClick: () => {},
 };
 
 export default Filter;

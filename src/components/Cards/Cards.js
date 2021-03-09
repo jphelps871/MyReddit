@@ -14,7 +14,7 @@ const pagination = (pageNum, nextPageId, pages, setPages) => {
   if (pageNum === 0) setPages(['', nextPageId]);
 };
 
-const Cards = ({ query, onChange }) => {
+const Cards = ({ query, onClick }) => {
   // eslint-disable-next-line object-curly-newline
   const { subReddit, filterReddit, pageNum, searchReddit } = query;
   const [pages, setPages] = useState(['']);
@@ -31,7 +31,7 @@ const Cards = ({ query, onChange }) => {
       <div className="cards">
         {redditData.map((item, idx) => (
           <Card
-            onClick={onChange}
+            onClick={onClick}
             key={idx.toString()}
             hide={item.data.over_18}
             subreddit={item.data.subreddit_name_prefixed}
@@ -59,11 +59,11 @@ Cards.propTypes = {
     pageNum: PropTypes.number.isRequired,
     searchReddit: PropTypes.string.isRequired,
   }).isRequired,
-  onChange: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 Cards.defaultProps = {
-  onChange: () => {},
+  onClick: () => {},
 };
 
 export default Cards;

@@ -51,25 +51,25 @@ const App = () => {
   return (
     <div className="App">
       <Header
-        onChange={handleHeaderSubreddit}
-        onClick={handleSearch}
-        subReddit={subReddit}
-        searchReddit={searchReddit}
+        onClick={handleHeaderSubreddit}
+        onSubmit={handleSearch}
+        subRedditValue={subReddit}
+        searchRedditValue={searchReddit}
       />
       <Media
         query="(min-width: 1200px)"
         render={() => (
-          <Aside className="aside" onChange={handleCardsSubreddit} />
+          <Aside className="aside" onClick={handleCardsSubreddit} />
         )}
       />
       <Filter
         className="filter"
-        handleClick={handleFilter}
-        filterReddit={filterReddit}
+        onClick={handleFilter}
+        filterRedditValue={filterReddit}
       />
       <main>
         <Cards
-          onChange={handleCardsSubreddit}
+          onClick={handleCardsSubreddit}
           query={{
             filterReddit,
             subReddit,
@@ -80,7 +80,7 @@ const App = () => {
 
         <Pager
           onClick={handlePageNumbers}
-          searchReddit={searchReddit}
+          searchRedditValue={searchReddit}
           pageNum={pageNum}
         />
       </main>

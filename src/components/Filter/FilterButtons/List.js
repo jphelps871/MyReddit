@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // eslint-disable-next-line object-curly-newline
-const Li = ({ toggleStyle, onChange, children, icon }) => {
+const Li = ({ toggleStyle, onClick, children, icon }) => {
   let active;
   if (toggleStyle) {
     active = {
@@ -22,7 +22,7 @@ const Li = ({ toggleStyle, onChange, children, icon }) => {
 
   return (
     <li>
-      <button type="button" style={active} onClick={onChange} name={children}>
+      <button type="button" style={active} onClick={onClick} name={children}>
         {children}
       </button>
     </li>
@@ -33,11 +33,11 @@ Li.propTypes = {
   toggleStyle: PropTypes.bool.isRequired,
   icon: PropTypes.string.isRequired,
   children: PropTypes.string.isRequired,
-  onChange: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 Li.defaultProps = {
-  onChange: () => {},
+  onClick: () => {},
 };
 
 export default Li;

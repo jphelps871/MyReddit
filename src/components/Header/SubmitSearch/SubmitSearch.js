@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './SubmitSearch.css';
 
-const SubmitSearch = ({ searchValue, onClick }) => {
+const SubmitSearch = ({ search, onClick }) => {
   // show button if props.searchvalue is true, else hide it.
   // when user has clicked header, reset search
 
-  if (searchValue) {
+  if (search) {
     return (
       <div className="submitSearch">
-        <button type="button" value={searchValue} onClick={onClick}>
+        <button type="button" value={search} onClick={onClick}>
           Search
         </button>
       </div>
@@ -20,12 +20,12 @@ const SubmitSearch = ({ searchValue, onClick }) => {
 };
 
 SubmitSearch.propTypes = {
-  searchValue: PropTypes.string,
+  search: PropTypes.string,
   onClick: PropTypes.func,
 };
 
 SubmitSearch.defaultProps = {
-  searchValue: '',
+  search: '',
   onClick: () => {},
 };
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import AsideItem from './AsideItem/AsideItem';
 import { useFetchSubreddits } from '../../Actions';
 import staticSubreddits from '../../MyData';
@@ -8,7 +7,7 @@ import trendingHeaderImage from '../../assets/icons/aside-images/trending-header
 import myRedditHeaderImage from '../../assets/icons/aside-images/my-reddit-header.jpg';
 import './Aside.css';
 
-const Aside = ({ onChange }) => {
+const Aside = ({ onClick }) => {
   const { names, icons } = useFetchSubreddits(
     'https://www.reddit.com/r/trendingsubreddits.json',
   );
@@ -21,16 +20,16 @@ const Aside = ({ onChange }) => {
   return (
     <aside>
       <AsideItem
+        onClick={onClick}
         heading={trendingHeaderTitle}
         image={trendingHeaderImage}
-        onClick={onChange}
         names={names}
         icons={icons}
       />
       <AsideItem
+        onClick={onClick}
         heading={myRedditHeaderTitle}
         image={myRedditHeaderImage}
-        onClick={onChange}
         names={staticNames}
         icons={staticIcons}
       />
@@ -39,10 +38,10 @@ const Aside = ({ onChange }) => {
 };
 
 Aside.propTypes = {
-  onChange: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 Aside.defaultProps = {
-  onChange: () => {},
+  onClick: () => {},
 };
 export default Aside;

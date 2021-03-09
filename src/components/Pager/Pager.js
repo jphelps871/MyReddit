@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Pager.css';
 
-const Pager = ({ onClick, searchReddit, pageNum }) => {
-  if (searchReddit) return <div />;
+const Pager = ({ onClick, searchRedditValue, pageNum }) => {
+  if (searchRedditValue) return <div />;
 
   return (
     <div className="pager">
@@ -20,13 +20,13 @@ const Pager = ({ onClick, searchReddit, pageNum }) => {
 
 Pager.propTypes = {
   onClick: PropTypes.func,
-  searchReddit: PropTypes.string,
+  searchRedditValue: PropTypes.string,
   pageNum: PropTypes.number.isRequired,
 };
 
 Pager.defaultProps = {
   onClick: () => {},
-  searchReddit: '',
+  searchRedditValue: '',
 };
 
 export default Pager;
