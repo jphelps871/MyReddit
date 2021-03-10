@@ -20,7 +20,7 @@ const Cards = ({ query, onClick }) => {
   const [pages, setPages] = useState(['']);
   const { redditData, loading, nextPage } = useFetchAll({
     tabs: `https://www.reddit.com/r/${subReddit}/${filterReddit}.json?after=${pages[pageNum]}`,
-    search: `http://www.reddit.com/search.json?q=${searchReddit}&sort=${filterReddit}.json?after=${pages[pageNum]}`,
+    search: `https://www.reddit.com/search.json?q=${searchReddit}&sort=${filterReddit}.json?after=${pages[pageNum]}`,
     searchTrue: searchReddit,
   });
 
