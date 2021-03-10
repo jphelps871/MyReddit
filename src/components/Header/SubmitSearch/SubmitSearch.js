@@ -16,7 +16,7 @@ const SubmitSearch = ({ search, onClick }) => {
     );
   }
 
-  return null;
+  return <div />;
 };
 
 SubmitSearch.propTypes = {
