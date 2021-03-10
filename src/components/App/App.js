@@ -19,7 +19,7 @@ const App = () => {
   const handleCardsSubreddit = ({ target }) => {
     try {
       const cardValue = target.value;
-      const [itemValue] = cardValue.match(/[^/]\d+/);
+      const [itemValue] = cardValue.match(/[^/]\w+/);
 
       // reset error
       setError('');
