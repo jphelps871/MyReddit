@@ -13,10 +13,8 @@
   color: white;
   margin: auto;
   margin-top: 16px;
-  padding: 0 16px;
-  width: 100%;
   text-align: center;
-  padding: 1.6em 0;
+  padding: 1.6em 8px;
   border-radius: 10px;
 
   background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
