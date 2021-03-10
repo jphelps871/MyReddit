@@ -31,6 +31,7 @@ const AsideItem = ({ names, icons, image, heading, onClick }) => {
             ), url("${image}")`,
         }}
         className="aside-header"
+        data-testid="ImageUrl"
       >
         <h4>{heading}</h4>
       </div>
