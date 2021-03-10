@@ -40,3 +40,9 @@
     font-size: 30px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .App {
+    padding: 0 16px;
+  }
+}
